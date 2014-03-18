@@ -52,6 +52,7 @@ class Div extends HtmlElement{
 class Button extends HtmlElement{
 	public function __construct($content, $attributes = array()){
 		$this->tag = "button";
+		$attributes["class"] = $class;
 		parent::__construct($content,$attributes);
 	}
 }
@@ -81,4 +82,66 @@ class Image extends HtmlVoidElement{
 		$attributes["height"] = $height;
 		parent::__construct($attributes);
 		}
+}
+
+class Event {
+
+		public $image; 
+		public $title;
+		public $discription;
+		public $date;
+		public $time;
+		public $site;
+		public $email;
+
+	public function __construct($image, $title, $discription, $date, $time, $site, $email){
+		
+
+		$this->image = $image;
+		$this->title = $title;
+		$this->discription = $discription;
+		$this->date = $date;
+		$this->time = $time;
+		$this->site = $site;
+		$this->email = $email;
+		
+	}
+
+
+} 
+
+
+
+class HTMLlist extends HtmlElement{
+	public function __construct($items = array(),$orderd = false,$attributes = array()){
+		
+
+		$content="";
+		if($orderd){
+			$this->tag = "ol";
+		}else{
+			$this->tag="ul";
+		}
+		foreach ($items as $value) {
+			$content.= (String)new ListItem($value);
+		}
+		parent::__construct($content,$attributes);
+	}
+}
+
+class ListItem extends HtmlElement{
+	public function __construct($content ,$attributes = array()){
+		$this ->tag = "li";
+		parent::__construct($content,$attributes);
+	}
+}
+	
+class Link extends HtmlElement{
+		public function __construct($content,$attributes = array()){
+		$this ->tag = "a";
+		parent::__construct($content,$attributes);
+	}
+
+
+
 }
