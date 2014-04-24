@@ -18,11 +18,7 @@
 
 	$content = new Div(
 			new HTMLlist(
-				/*[
-				new Link("test",["href"=> "result.php"]),
-				new Link("test2",["href"=> "result.php"])
-
-				]*/
+				
 				$links
 
 				));	
