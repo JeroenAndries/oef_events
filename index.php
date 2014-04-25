@@ -31,6 +31,7 @@
 <head>
 	<title>test</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/signup.css">
 	
 </head>
 <body>

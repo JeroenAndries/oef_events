@@ -52,7 +52,6 @@ class Div extends HtmlElement{
 class Button extends HtmlElement{
 	public function __construct($content, $attributes = array()){
 		$this->tag = "button";
-		$attributes["class"] = $class;
 		parent::__construct($content,$attributes);
 	}
 }
