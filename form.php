@@ -1,27 +1,48 @@
 <?php
-
 	include_once("html.php");
+include_once("database.php");
 
-	$user_name ="";
-	if (isset($_POST['user_name'])) {
-		$user_name = $_POST['user_name'];
+	
+
+
+
+	$name ="";
+	if (isset($_POST['name'])) {
+		// opvragen van databases niet van post
+		//$event = $_POST['event'];
+	}
+	$discription ="";
+	if (isset($_POST['discription'])) {
+		//$date = $_POST['date'];
 	}
 
-	$real_name ="";
-	if (isset($_POST['real_name'])) {
-		$real_name = $_POST['real_name'];
+	$date ="";
+	if (isset($_POST['date'])) {
+		//$date = $_POST['date'];
 	}
 
-	$password ="";
-	if (isset($_POST['password'])) {
-		$password = $_POST['password'];
+	$time ="";
+	if (isset($_POST['time'])) {
+		//$date = $_POST['date'];
+	}
+	$email ="";
+	if (isset($_POST['email'])) {
+		//$date = $_POST['date'];
+	}
+	$site ="";
+	if (isset($_POST['site'])) {
+		//$date = $_POST['date'];
+	}
+	$picture ="";
+	if (isset($_POST['picture'])) {
+		//$date = $_POST['date'];
 	}
 
-	$showResult = !(empty($user_name) && empty($real_name) && empty($password));
+	$data = !(empty($user_name) && empty($real_name) && empty($password));
 
 	$content = "";
 
-	if($showResult) {
+	if($data) {
 		$content = new Div( 
 			new Heading("Welkom $real_name") .
 			new Paragraph("Je gebruikersnaam is $user_name")
@@ -30,11 +51,16 @@
 	}else{ 
 		$content = new Div(
 			new Form(
-				new Heading("Please sign in", 2, array("class" => "form-signin-heading")) .
-				new Input("real_name", "text", array("class" => "form-control", "placeholder" => "Name")) .
-				new Input("user_name", "text", array("class" => "form-control", "placeholder" => "Username")) .
-				new Input("password", "password", array("class" => "form-control", "placeholder" => "Password")) .
-				new Button("Sign in", array("class" => "btn btn-lg btn-primary btn-block", "type" => "submit"))
+				new Heading("ingave gegevens", 2, array("class" => "form-signin-heading")) .
+				new Input("name", "text", array("class" => "form-control", "placeholder" => "Naam event")) .
+				new Textarea("", array("class" => "form-control", "placeholder" => "beschrijving event","rows"=>"3")) .
+				new Input("date", "date", array("class" => "form-control", "placeholder" => "date: xx/xx/xxxx")) .
+				new Input("time", "time", array("class" => "form-control", "placeholder" => "time: xx:xx")) .
+				new Input("email", "text", array("class" => "form-control", "placeholder" => "info@yourevent.com")) .
+				new Input("site", "text", array("class" => "form-control", "placeholder" => "http://yourevent.com")) .
+
+				new Input("picture", "text", array("class" => "form-control", "placeholder" => "http://yourevent.com")) .
+				new Button("make event", array("class" => "btn btn-lg btn-primary btn-block", "type" => "submit"))
 				, array("class" => "form-signin", "method" => "post")
 			), array("class" => "container")
 		);		

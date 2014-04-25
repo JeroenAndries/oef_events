@@ -92,8 +92,9 @@ class Event {
 		public $time;
 		public $site;
 		public $email;
+		public $id;
 
-	public function __construct($image, $title, $discription, $date, $time, $site, $email){
+	public function __construct($image, $title, $discription, $date, $time, $site, $email,$id){
 		
 
 		$this->image = $image;
@@ -103,6 +104,7 @@ class Event {
 		$this->time = $time;
 		$this->site = $site;
 		$this->email = $email;
+		$this->id = $id;
 		
 	}
 
@@ -140,7 +142,10 @@ class Link extends HtmlElement{
 		$this ->tag = "a";
 		parent::__construct($content,$attributes);
 	}
-
-
-
+}
+class Textarea extends HtmlElement{
+	public function __construct($content, $attributes = array()){
+		$this->tag = "textarea";
+		parent::__construct($content,$attributes);
+	}
 }

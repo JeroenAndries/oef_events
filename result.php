@@ -2,7 +2,7 @@
 include_once("html.php");
 include("evenementen.php");
 
-$chosen_event = $_GET["event"];
+$chosen_event = $_GET["id"];
 
 $par = [];
 
@@ -13,9 +13,9 @@ $par = [];
  $time;
  $site;
  $email;
-
+ $content = "nothing found";
 foreach ($events as  $event) {
-		if($event->title == $chosen_event)
+		if($event->id == $chosen_event)
 		{
 			$title = $event->title;
 			$par[] = new heading($title);
@@ -28,6 +28,15 @@ foreach ($events as  $event) {
 			$inhoud .= new Image($event->image,"image of event");
 			$content =  new Div( $inhoud, array("class" => "jumbotron"));
 
+			$title = $
+
+
+			$dbinhoud = new heading($event->title,1, array("class" => "form-signin-heading"));
+			$dbinhoud .= new Paragraph("info: ".$event->discription);
+			$dbinhoud .= new Paragraph("datum & tijd: ".$event->date ." @ ". $event->time);
+			$dbinhoud .= new Link("website",["href"=> $event->site]);
+			$dbinhoud .= new Paragraph("Contact: ".$event->email);
+			$dbinhoud .= new Image($event->image,"image of event");
 				
 		}
 		
