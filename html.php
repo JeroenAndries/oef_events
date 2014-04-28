@@ -144,8 +144,9 @@ class Link extends HtmlElement{
 	}
 }
 class Textarea extends HtmlElement{
-	public function __construct($content, $attributes = array()){
+	public function __construct($name,$content, $attributes = array()){
 		$this->tag = "textarea";
+		$attributes["name"] = $name;
 		parent::__construct($content,$attributes);
 	}
 }

@@ -11,26 +11,28 @@
 
 
 
-	$links = [];
+	/*$links = [];
 	foreach ($events as  $event) {
-		$links[] = new Link($event->title,["href"=> ("result.php?event=".($event->title))]). ' ' .new link("edit ",["href"=> ("result.php?id=".($event->id))]) ;
+		$links[] = new Link($event->title,["href"=> ("result.php?id=".($event->id))]). ' ' .new link("edit ",["href"=> ("form.php?edit&id=".($event->id))]) ;
 
 				
-	}
+	}*/
 
 	foreach ($result as $event) {
-		$links[] = new Link($event['name'],["href"=> ("result.php?id=".($event['id']))]) ;
+		$links[] = new Link($event['name'],["href"=> ("result.php?id=".($event['id']))])." ".new Link('edit',["href"=> ("form.php?edit&id=".($event['id']))]) ;
 
 				
 	}
 
 
 	$content = new Div(
+			new heading("evenementen").
 			new HTMLlist(
 				
 				$links
 
-				));	
+				).new link("add event", ["href"=> ("form.php"),"class"=>"btn btn-default btn-lg"])
+				);	
 
 
 

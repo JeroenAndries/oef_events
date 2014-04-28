@@ -1,6 +1,7 @@
 <?php 
 include_once("html.php");
-include("evenementen.php");
+//include("evenementen.php");
+include_once("database.php");
 
 $chosen_event = $_GET["id"];
 
@@ -14,10 +15,20 @@ $par = [];
  $site;
  $email;
  $content = "nothing found";
-foreach ($events as  $event) {
+ 
+
+$STH = $DBH->query('SELECT * FROM events WHERE id = '.$chosen_event);
+
+	$STH->setFetchMode(PDO::FETCH_OBJ);
+	$result = $STH->fetch();
+
+
+
+
+/*foreach ($result as  $event) {
 		if($event->id == $chosen_event)
-		{
-			$title = $event->title;
+		{*/
+			/*$title = $event->title;
 			$par[] = new heading($title);
 
 			$inhoud = new heading($event->title,1, array("class" => "form-signin-heading"));
@@ -26,21 +37,25 @@ foreach ($events as  $event) {
 			$inhoud .= new Link("website",["href"=> $event->site]);
 			$inhoud .= new Paragraph("Contact: ".$event->email);
 			$inhoud .= new Image($event->image,"image of event");
-			$content =  new Div( $inhoud, array("class" => "jumbotron"));
+			$content =  new Div( $inhoud, array("class" => "jumbotron"));*/
 
-			$title = $
+			
+			if(isset($result))
+			{
+				$dbinhoud = new heading($result->name,1, array("class" => "form-signin-heading"));
+			$dbinhoud .= new Paragraph("info: ".$result->discription);
+			$dbinhoud .= new Paragraph("datum & tijd: ".$result->date ." @ ". $result->time);
+			$dbinhoud .= new Link("website",["href"=> $result->site]);
+			$dbinhoud .= new Paragraph("Contact: ".$result->email);
+			$dbinhoud .= new Image($result->picture,"image of event");
+			$content = $dbinhoud;
+			}
 
-
-			$dbinhoud = new heading($event->title,1, array("class" => "form-signin-heading"));
-			$dbinhoud .= new Paragraph("info: ".$event->discription);
-			$dbinhoud .= new Paragraph("datum & tijd: ".$event->date ." @ ". $event->time);
-			$dbinhoud .= new Link("website",["href"=> $event->site]);
-			$dbinhoud .= new Paragraph("Contact: ".$event->email);
-			$dbinhoud .= new Image($event->image,"image of event");
+			
 				
-		}
 		
-	}
+		
+	
 
 
 
