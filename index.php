@@ -4,23 +4,15 @@
 	include("evenementen.php");
 	include_once("database.php");
 	
-	$STH = $DBH->query('SELECT name, id FROM events');
+	$STH = $DBH->query('SELECT name, id , picture FROM events');
 
 	$STH->setFetchMode(PDO::FETCH_ASSOC);
 	$result = $STH->fetchAll();
 
 
-
-	/*$links = [];
-	foreach ($events as  $event) {
-		$links[] = new Link($event->title,["href"=> ("result.php?id=".($event->id))]). ' ' .new link("edit ",["href"=> ("form.php?edit&id=".($event->id))]) ;
-
-				
-	}*/
-
 	foreach ($result as $event) {
-		$links[] = new Link($event['name'],["href"=> ("result.php?id=".($event['id']))])." ".new Link('edit',["href"=> ("form.php?edit&id=".($event['id']))]) ;
-
+		$links[] = new Link($event['name'],["href"=> ("result.php?id=".($event['id']))])." ".new Link('edit',["href"=> ("form.php?edit&id=".($event['id']))])." ".new Image($event['picture'],"image of event",100,100); ;
+		
 				
 	}
 

@@ -2,7 +2,7 @@
 	include_once("html.php");
 include_once("database.php");
 $chosen_event="";
-	var_dump($_GET);
+	
 if (isset($_GET["id"])) {
 	$chosen_event = $_GET["id"];
 }
@@ -51,6 +51,7 @@ if (isset($_GET["id"])) {
 			$STH = $DBH->prepare("INSERT INTO events (name,discription,date,time,email,site,picture) values(:name,:discription,:date,:time,:email,:site,:picture)" );
 			$temp= array("name"=>$name,"discription"=>$discription,"date"=>$date,"time"=>$time,"email"=>$email,"site"=>$site,"picture"=>$picture);
 			$STH->execute($temp);
+
 			
 	}
 	if(isset($_POST['edit']))
@@ -58,6 +59,7 @@ if (isset($_GET["id"])) {
 		$STH = $DBH->prepare("UPDATE events SET name=:name,discription=:discription,date=:date,time=:time,email=:email,site=:site,picture=:picture WHERE id=$chosen_event"); 
 		$temp= array("name"=>$name,"discription"=>$discription,"date"=>$date,"time"=>$time,"email"=>$email,"site"=>$site,"picture"=>$picture);
 		$STH->execute($temp);	
+		header("Location: index.php");
 	}
 
 	$content = "";
@@ -74,7 +76,7 @@ if (isset($_GET["id"])) {
 		$content = new Div(
 			new Form(
 				new Heading("ingave gegevens", 2, array("class" => "form-signin-heading")) .
-				new Input("name", "text", array("class" => "form-control", "value" => $result->name  )) .
+					new Input("name", "text", array("class" => "form-control", "value" => $result->name  )) .
 				new Textarea("discription",$result->discription, array("class" => "form-control","rows"=>"3")) .
 				new Input("date", "date", array("class" => "form-control" , "value" => $result->date)) .
 				new Input("time", "time", array("class" => "form-control", "value" => $result->time)) .

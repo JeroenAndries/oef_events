@@ -73,7 +73,7 @@ class Form extends HtmlElement{
 }
 
 class Image extends HtmlVoidElement{
-	public function __construct($src="", $alt="", $attributes = array(),$width = 420,$height = 420){
+	public function __construct($src="", $alt="",$width = 420,$height = 420, $attributes = array()){
 		$this->tag = "img";
 		$attributes["src"] = $src;
 		$attributes["alt"] = $alt;
